@@ -1,0 +1,42 @@
+{{!
+CITATION
+Source: CS340 NodeJS starter app (github.com/osu-cs340-ecampus/nodejs-starter-app)
+Author: George Kochera
+Retrieved: 2/27/2023
+This application was adapted from the boilerplate code provided in the CS340 starter app.
+}}
+
+<h2>View All Product Types</h2>
+<table id="product-types-table" class="category-table">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr>
+            <td>{{this.ProductTypeID}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table> 
+
+{{!-- Form to add a new ProductType --}}
+<div id="add-product-type-section">
+<h2>Add A New Product Type</h2>
+<p>To add a new product type, enter the information below.</p>
+<form id="add-product-type-form-ajax">
+    <label for="input-product-type-id">Product Type: </label>
+    <input type="text" name="input-product-type-id" id="input-product-type-id">
+
+    <input type="submit">
+</form>
+</div>
+<script src="./js/add-product-type.js"></script>

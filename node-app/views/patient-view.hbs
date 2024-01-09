@@ -1,0 +1,124 @@
+{{!
+CITATION
+Source: CS340 NodeJS starter app (github.com/osu-cs340-ecampus/nodejs-starter-app)
+Author: George Kochera
+Retrieved: 2/27/2023
+This application was adapted from the boilerplate code provided in the CS340 starter app.
+}}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+<h2> View All Patients </h2>
+
+{{!-- Create a table --}}
+<table id="patients-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For the first row, we print each key of the row object as a header --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the PatientID, Name, BirthDate, MedicalRecordNumber and BloodTypeID, in order --}}
+        {{#each data}}
+        <tr id="row-{{this.PatientID}}">
+            <td>{{this.PatientID}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{moment this.BirthDate format="DD-MM-YYYY"}}</td>
+            <td>{{this.MedicalRecordNumber}}</td>
+            <td>{{this.BloodTypeID}}</td>
+            <td><button id="editButton" onclick="showEditForm('{{this.PatientID}}', '{{moment this.BirthDate format="YYYY-MM-DD"}}', {{this.MedicalRecordNumber}}, '{{this.BloodTypeID}}')">Edit</button></td>
+            <td><button onclick="deletePatient({{this.PatientID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete-patient.js"></script>
+<script src="./js/show-patient-update.js"></script>
+
+
+
+{{!-- Form to add a patient to the table  --}}
+<div id="add-section">
+<h2>Add a New Patient</h2>
+<p>To add a new patient, please enter their information below and click 'Submit'!</p>
+<form id="add-patient-form-ajax">
+    <label for="input-name">Full Name: </label>
+    <input type="text" name="input-name" id="input-name"> <br><br>
+    
+    <label for="input-birth-date">Birth Date: </label>
+    <input type="date" name="input-birth-date" id="input-birth-date"> <br><br>
+
+    <label for="input-medical-record-number">Medical Record Number: </label>
+    <input type="number" name="input-medical-record-number" id="input-medical-record-number"> <br><br>
+
+    <label for="input-blood-type-id">BloodTypeID: </label>
+    <select name="input-blood-type-id" id="input-blood-type-id">
+        <option value="">Select a BloodType</option>
+        <option value='NULL'>N/A</option>
+        {{#each bloodtypes}}
+        <option value="{{this.BloodTypeID}}">{{this.BloodTypeID}}</option>
+        {{/each}}
+    </select> <br><br>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add-patient.js"></script>
+</div>
+
+{{!-- 
+    CITATION
+    The hidden form section was adapted from the following code:
+    Source: HTMLElement.hidden (https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/hidden)
+    Author: MDN Web Docs 
+    Retrieved: 03/01/2023
+--}}
+{{!-- Form to update a record  --}}
+<div id="update-section" hidden>
+<h2>Update A Patient</h2>
+<p>To update a specific patient fill out the form below and click 'Submit'!</p>
+<form id="update-patient-form-ajax">
+
+    <label for="update-name">Full Name: </label>
+    <select name="update-name" id="update-patientID">
+        <option value="">Select a Patient</option>
+        {{#each data}}
+        <option value="{{this.PatientID}}">{{this.Name}}</option>
+        {{/each}}
+    </select><br><br>
+
+    <label for="update-birth-date">Birth Date: </label>
+    <input type="date" name="update-birth-date" id="update-birth-date"><br><br>
+
+    <label for="update-medical-record-number">Medical Record Number: </label>
+    <input type="number" name="update-medical-record-number" id="update-medical-record-number"><br><br>
+
+    <label for="update-blood-type-id">BloodTypeID: </label>
+    <select name="update-blood-type-id" id="update-blood-type-id">
+        <option value="">Select a BloodType</option>
+        <option value='NULL'>N/A</option>
+        {{#each bloodtypes}}
+        <option value="{{this.BloodTypeID}}">{{this.BloodTypeID}}</option>
+        {{/each}}
+    </select><br><br>
+
+    <input type="submit">
+
+</form>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/update-patient.js"></script>
+</div>

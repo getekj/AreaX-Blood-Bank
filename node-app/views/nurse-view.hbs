@@ -1,0 +1,77 @@
+{{!
+CITATION
+Source: CS340 NodeJS starter app (github.com/osu-cs340-ecampus/nodejs-starter-app)
+Author: George Kochera
+Retrieved: 2/27/2023
+This application was adapted from the boilerplate code provided in the CS340 starter app.
+}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h2>View All Nurses</h2>
+<table id="nurses-table">
+    
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr id="row-{{this.NurseID}}">
+            <td>{{this.NurseID}}</td>
+            <td>{{this.Name}}</td>
+            <td>{{this.Extension}}</td>
+            <td><button onclick="showNurseEditForm({{this.NurseID}},{{this.Extension}})">Edit</button></td>
+            <td><button onclick="deleteNurse({{this.NurseID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+
+</table>
+<script src="./js/show-nurse-update.js"></script>
+<script src="./js/delete-nurse.js"></script>
+
+{{!-- Form to add a new Nurse --}}
+<h2>Add a New Nurse</h2>
+<p>To add a new nurse, enter their information below.</p>
+
+<form id="add-nurse-form-ajax">
+    <label for="input-name">Full Name: </label>
+    <input type="text" name="input-name" id="input-name"> <br><br>
+    
+    <label for="input-extension">Extension: </label>
+    <input type="text" name="input-extension" id="input-extension"><br><br>
+
+    <input type="submit">
+</form>
+<script src="./js/add-nurse.js"></script>
+
+{{!-- Form to update a Nurse --}}
+<div id="update-section" hidden>
+    <h2>Update a New Nurse</h2>
+    <p>To update a nurse, change only the update information below.</p>
+    <form id="update-nurse-form-ajax">
+        <label for="update-name">Full Name: </label>
+        <select name="update-name" id="update-nurseID">
+            <option value="">Select a Nurse</option>
+            {{#each data}}
+            <option value="{{this.NurseID}}">{{this.Name}}</option>
+            {{/each}}
+        </select><br><br>
+
+        <label for="update-extension">Extension: </label>
+        <input type="text" name="update-extension" id="update-extension"> <br><br>
+
+        <input type="submit"> 
+    
+    </form>
+</div>
+<script src="./js/update-nurse.js"></script>

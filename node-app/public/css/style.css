@@ -1,0 +1,64 @@
+/* Style sheet for pages*/
+
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Poppins:wght@300;400;500;700&family=Roboto:wght@300&display=swap');
+
+body {       
+  margin-left:50px;
+  background-color:ghostwhite;
+  padding: 1.5%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.category-table {
+  border-collapse:collapse;
+  text-align:left;
+  border:1px solid black;
+  width: 50%;
+  height: 50%;
+  padding: 1%;
+}
+
+.transfusion-orders-table {
+  width: 95% ;
+}
+
+table {
+  border-collapse:collapse;
+  text-align:left;
+  border:1px solid black;
+  width: 80%;
+  padding: 1%;
+}
+
+tr {
+  border:1px solid black;
+  border-spacing:100px;
+  text-align:left;
+}
+tr:nth-child(even) {
+  background-color: whitesmoke;
+}
+tr:hover {
+  color: whitesmoke;
+  background-color: rgb(180, 63, 63);
+}
+  th {
+    border:1px solid black;
+    padding:0.5%;
+  }
+  td {
+    border:1px solid black;
+    padding:1%;
+    text-align:left;
+  }
+
+form {
+  padding: 0.5%;
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  font-size:1em;
+}
