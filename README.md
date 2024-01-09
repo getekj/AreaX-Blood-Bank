@@ -95,8 +95,8 @@ to the users. Please note that these are highly idealized entities.
 - ProductTypeID: varchar, unique, not null, primary key
   - Type of the blood product: red blood cells, plasma, cryo, platelets
     
-  **Relationships**:
-  ● **BloodProducts**: 1 to M with as a single ProductType can be associated with many
+  **Relationships**:  
+  - **BloodProducts**: 1 to M with as a single ProductType can be associated with many
   different blood products, but a single blood product can have only one product
   type
   
